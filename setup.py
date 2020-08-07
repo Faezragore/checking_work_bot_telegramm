@@ -36,7 +36,7 @@ def main():
             payload["timestamp"] = response_from_server["timestamp_to_request"]
         else:
             new_response_from_server = response_from_server["new_attempts"][0]
-            send_a_message_to_telegram_bot("У вас проверили работу:урок %s. Отправляем уведомления о проверке работ" % (new_response_from_server["lesson_title"]))
+            send_a_message_to_telegram_bot("РЈ РІР°СЃ РїСЂРѕРІРµСЂРёР»Рё СЂР°Р±РѕС‚Сѓ:СѓСЂРѕРє %s. РћС‚РїСЂР°РІР»СЏРµРј СѓРІРµРґРѕРјР»РµРЅРёСЏ Рѕ РїСЂРѕРІРµСЂРєРµ СЂР°Р±РѕС‚" % (new_response_from_server["lesson_title"]))
             payload["timestamp"] = new_response_from_server["timestamp"]
             continue
 
