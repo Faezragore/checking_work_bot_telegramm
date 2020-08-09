@@ -20,7 +20,8 @@ def main():
     url = 'https://dvmn.org/api/long_polling/'
     while True:
         try:
-            logging.info("Бот запущен")
+            send_a_message_to_telegram_bot("Бот запущен")
+            #logging.info("Бот запущен")
             response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
             response.raise_for_status()
             response_from_server = response.json()
