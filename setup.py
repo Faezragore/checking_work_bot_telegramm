@@ -46,13 +46,13 @@ def main():
             send_a_message_to_telegram_bot("ошибка" + str(logger.exception()))
             continue
         
-        if "timeout" in response_from_server["status"]:
-            payload["timestamp"] = response_from_server["timestamp_to_request"]
-        else:
-            new_response_from_server = response_from_server["new_attempts"][0]
-            send_a_message_to_telegram_bot("У вас проверили работу:урок %s. Отправляем уведомления о проверке работ" % (new_response_from_server["lesson_title"]))
-            payload["timestamp"] = new_response_from_server["timestamp"]
-            continue
+        #if "timeout" in response_from_server["status"]:
+            #payload["timestamp"] = response_from_server["timestamp_to_request"]
+        #else:
+            #new_response_from_server = response_from_server["new_attempts"][0]
+            #send_a_message_to_telegram_bot("У вас проверили работу:урок %s. Отправляем уведомления о проверке работ" % (new_response_from_server["lesson_title"]))
+            #payload["timestamp"] = new_response_from_server["timestamp"]
+            #continue
 
 
 def send_a_message_to_telegram_bot(message):
