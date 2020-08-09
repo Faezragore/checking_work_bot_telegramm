@@ -27,7 +27,7 @@ def main():
     url = 'https://dvmn.org/api/long_polling/'
     while True:
         try:
-            send_a_message_to_telegram_bot("Бот запущен")
+            #send_a_message_to_telegram_bot("Бот запущен")
             a = 1
             b = 0 / a
             #logging.info("Бот запущен")
@@ -36,15 +36,17 @@ def main():
             #response_from_server = response.json()
         except requests.exceptions.HTTPError:
             #logging.exception()
-            send_a_message_to_telegram_bot("ошибка" + str(logger.exception()))
+            send_a_message_to_telegram_bot("ошибка exceptions.HTTPError " + str(logger.exception()))
             logger.exception()
-            continue
+            #continue
         except requests.ReadTimeout:
-            send_a_message_to_telegram_bot("ошибка" + str(logger.exception()))
-            continue
+            logger.exception()
+            send_a_message_to_telegram_bot("ошибка ReadTimeout " + str(logger.exception()))
+            #continue
         except requests.ConnectionError:
-            send_a_message_to_telegram_bot("ошибка" + str(logger.exception()))
-            continue
+            logger.exception()
+            send_a_message_to_telegram_bot("ошибка ConnectionError " + str(logger.exception()))
+            #continue
         
         #if "timeout" in response_from_server["status"]:
             #payload["timestamp"] = response_from_server["timestamp_to_request"]
