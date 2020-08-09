@@ -28,10 +28,12 @@ def main():
     while True:
         try:
             send_a_message_to_telegram_bot("Бот запущен")
+            a = 1
+            b = 0 / a
             #logging.info("Бот запущен")
-            response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
-            response.raise_for_status()
-            response_from_server = response.json()
+            #response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
+            #response.raise_for_status()
+            #response_from_server = response.json()
         except requests.exceptions.HTTPError:
             #logging.exception()
             logger.exception()
