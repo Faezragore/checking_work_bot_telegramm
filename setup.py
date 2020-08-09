@@ -28,7 +28,7 @@ def main():
     while True:
         try:
             #send_a_message_to_telegram_bot("Бот запущен")
-            b = 100 / 0
+            z = 100 / 0
             #logging.info("Бот запущен")
             #response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
             #response.raise_for_status()
