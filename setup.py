@@ -33,6 +33,9 @@ def main():
             #response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
             #response.raise_for_status()
             #response_from_server = response.json()
+        except ZeroDivisionError:
+            logger.exception()
+            send_a_message_to_telegram_bot("деление на ноль " + str(logger.exception()))
         except requests.exceptions.HTTPError:
             logger.exception()
             #logging.exception()
