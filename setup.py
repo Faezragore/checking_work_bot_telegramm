@@ -6,12 +6,12 @@ import telegram
 import urllib.parse as urllib
 import logging
 #from logging.handlers import RotatingFileHandler
-from logging.handlers import StreamHandler
+from logging import StreamHandler
 
 
 logger = logging.getLogger("Большой брат")
 logger.setLevel(logging.INFO)
-handler = StreamHandler(stream=None)
+handler = StreamHandler()
 logger.addHandler(handler)
 
 logger.info("Я новый логер!")
