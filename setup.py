@@ -34,9 +34,9 @@ def main():
             #response.raise_for_status()
             #response_from_server = response.json()
         except requests.exceptions.HTTPError:
+            logger.exception()
             #logging.exception()
             send_a_message_to_telegram_bot("ошибка exceptions.HTTPError " + str(logger.exception()))
-            logger.exception()
             #continue
         except requests.ReadTimeout:
             logger.exception()
