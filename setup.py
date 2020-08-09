@@ -36,11 +36,14 @@ def main():
             #response_from_server = response.json()
         except requests.exceptions.HTTPError:
             #logging.exception()
+            send_a_message_to_telegram_bot("ошибка" + str(logger.exception()))
             logger.exception()
             continue
         except requests.ReadTimeout:
+            send_a_message_to_telegram_bot("ошибка" + str(logger.exception()))
             continue
         except requests.ConnectionError:
+            send_a_message_to_telegram_bot("ошибка" + str(logger.exception()))
             continue
         
         if "timeout" in response_from_server["status"]:
