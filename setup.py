@@ -5,10 +5,17 @@ import time
 import telegram
 import urllib.parse as urllib
 import logging
-from logging.handlers import RotatingFileHandler
+#from logging.handlers import RotatingFileHandler
+from logging.handlers import StreamHandler
 
 
-logging.basicConfig(format = '%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level = logging.INFO)
+logger = logging.getLogger("Большой брат")
+logger.setLevel(logging.INFO)
+handler = StreamHandler(stream=None)
+logger.addHandler(handler)
+
+logger.info("Я новый логер!")
+#logging.basicConfig(format = '%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level = logging.INFO)
 
 
 def main():
@@ -26,7 +33,8 @@ def main():
             response.raise_for_status()
             response_from_server = response.json()
         except requests.exceptions.HTTPError:
-            logging.exception()
+            #logging.exception()
+            logger.exception()
             continue
         except requests.ReadTimeout:
             continue
