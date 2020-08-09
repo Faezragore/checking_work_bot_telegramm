@@ -34,7 +34,7 @@ def main():
             #response.raise_for_status()
             #response_from_server = response.json()
         except ZeroDivisionError:
-            logging.exception()
+            #logging.exception()
             #logger.exception()
             send_a_message_to_telegram_bot("деление на ноль ")
         except requests.exceptions.HTTPError:
