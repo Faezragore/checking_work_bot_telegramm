@@ -35,7 +35,7 @@ def main():
             #response_from_server = response.json()
         except ZeroDivisionError:
             logger.exception()
-            send_a_message_to_telegram_bot("деление на ноль " + str(logger.exception()))
+            send_a_message_to_telegram_bot("деление на ноль ")
         except requests.exceptions.HTTPError:
             logger.exception()
             #logging.exception()
