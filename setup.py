@@ -38,8 +38,8 @@ def main():
             #logger.exception()
             log = logger.exception()
             send_a_message_to_telegram_bot("деление на ноль 1 " + str(log))
-            send_a_message_to_telegram_bot("деление на ноль 2 " + logging.exception())
-            send_a_message_to_telegram_bot("деление на ноль 3 " + str(logging.exception()))
+            send_a_message_to_telegram_bot("деление на ноль 2 " + logger.exception())
+            send_a_message_to_telegram_bot("деление на ноль 3 " + str(logger.exception()))
         except requests.exceptions.HTTPError:
             logger.exception()
             #logging.exception()
