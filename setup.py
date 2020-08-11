@@ -33,14 +33,14 @@ def main():
             #response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
             #response.raise_for_status()
             #response_from_server = response.json()
-        except ZeroDivisionError:
+        except Exception:
             #logging.exception()
             #logger.exception()
             #print(type(logging.exception()))
             #print(type(loger.exception()))
-            #log = logging.exception()
-            #send_a_message_to_telegram_bot("деление на ноль 1 " + str(log))
-            #send_a_message_to_telegram_bot("деление на ноль 1 " + logger.exception())
+            log = logger.exception()
+            send_a_message_to_telegram_bot("деление на ноль 1 " + str(log))
+            send_a_message_to_telegram_bot("деление на ноль 6 %s ", logger.exception())
             send_a_message_to_telegram_bot("деление на ноль 2 " + str(logger.exception()))
             send_a_message_to_telegram_bot("деление на ноль 3 " + logging.exception())
             send_a_message_to_telegram_bot("деление на ноль 4 " + str(logging.exception()))
