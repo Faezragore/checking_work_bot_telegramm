@@ -36,7 +36,8 @@ def main():
         except ZeroDivisionError:
             #logging.exception()
             #logger.exception()
-            send_a_message_to_telegram_bot("деление на ноль ")
+            log = logger.exception()
+            send_a_message_to_telegram_bot("деление на ноль " + str(log))
         except requests.exceptions.HTTPError:
             logger.exception()
             #logging.exception()
