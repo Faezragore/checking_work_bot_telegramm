@@ -5,7 +5,7 @@ import time
 import telegram
 import urllib.parse as urllib
 import logging
-#from logging.handlers import RotatingFileHandler
+from logging.handlers import RotatingFileHandler
 from logging import StreamHandler
 
 
@@ -36,10 +36,12 @@ def main():
         except ZeroDivisionError:
             #logging.exception()
             #logger.exception()
-            log = logger.exception()
+            print(type(logging.exception()))
+            print(type(loger.exception()))
+            log = logging.exception()
             send_a_message_to_telegram_bot("деление на ноль 1 " + str(log))
-            send_a_message_to_telegram_bot("деление на ноль 2 " + logger.exception())
-            send_a_message_to_telegram_bot("деление на ноль 3 " + str(logger.exception()))
+            send_a_message_to_telegram_bot("деление на ноль 2 " + logging.exception())
+            send_a_message_to_telegram_bot("деление на ноль 4 " + str(logging.exception()))
         except requests.exceptions.HTTPError:
             logger.exception()
             #logging.exception()
