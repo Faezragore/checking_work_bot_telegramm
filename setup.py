@@ -28,18 +28,18 @@ def main():
     while True:
         try:
             #send_a_message_to_telegram_bot("Бот запущен")
-            z = 100 / 0
+            0/0
             #logging.info("Бот запущен")
             #response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
             #response.raise_for_status()
             #response_from_server = response.json()
         except Exception:
             #logging.exception()
-            logger.exception("Жопа жопная!!!")
+            #logger.exception("Жопа жопная!!!")
             #print(type(logging.exception()))
             #print(type(loger.exception()))
             #log = logger.exception("FACK FACK FACK")
-            send_a_message_to_telegram_bot("деление на ноль 1 " + logger.exception("FACK FACK FACK"))
+            send_a_message_to_telegram_bot("деление на ноль 1 " + logging.exception("FACK FACK FACK"))
             send_a_message_to_telegram_bot("деление на ноль 6 %s ", logger.exception())
             send_a_message_to_telegram_bot("деление на ноль 2 " + str(logger.exception()))
             send_a_message_to_telegram_bot("деление на ноль 3 " + logging.exception())
