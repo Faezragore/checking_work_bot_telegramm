@@ -27,7 +27,7 @@ def main():
             #response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
             #response.raise_for_status()
             #response_from_server = response.json()
-        except Exception,e:
+        except Exception as e:
             #logging.exception()
             #logger.exception("Жопа жопная!!!")
             #print(type(logging.exception()))
