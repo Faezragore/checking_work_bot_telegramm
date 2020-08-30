@@ -9,12 +9,6 @@ from logging.handlers import RotatingFileHandler
 from logging import StreamHandler
 
 
-logger = logging.getLogger("Большой брат")
-logger.setLevel(logging.INFO)
-handler = StreamHandler()
-logger.addHandler(handler)
-
-logger.info("Я новый логер!")
 #logging.basicConfig(format = '%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level = logging.INFO)
 
 
@@ -75,5 +69,10 @@ def send_a_message_to_telegram_bot(message):
 
 
 if __name__ == '__main__':
+    logger = logging.getLogger("Большой брат")
+    logger.setLevel(logging.INFO)
+    handler = StreamHandler()
+    logger.addHandler(handler)
+    logger.info("Я новый логер!")
     load_dotenv()
     main()
