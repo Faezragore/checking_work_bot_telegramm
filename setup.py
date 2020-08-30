@@ -27,7 +27,7 @@ def main():
             #response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
             #response.raise_for_status()
             #response_from_server = response.json()
-        except Exception:
+        except Exception,e:
             #logging.exception()
             #logger.exception("Жопа жопная!!!")
             #print(type(logging.exception()))
@@ -36,7 +36,7 @@ def main():
             #send_a_message_to_telegram_bot("деление на ноль 1 " + logging.exception("FACK FACK FACK"))
             #send_a_message_to_telegram_bot("деление на ноль 6 %s ", logger.exception())
             #send_a_message_to_telegram_bot("деление на ноль 2 " + str(logger.exception()))
-            send_a_message_to_telegram_bot("деление на ноль 3 " + logger.exception("fack"))
+            send_a_message_to_telegram_bot("деление на ноль 3 " + logger.exception(e))
             #send_a_message_to_telegram_bot("деление на ноль 4 " + str(logger.exception()))
         except requests.exceptions.HTTPError:
             logger.exception()
