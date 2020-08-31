@@ -37,7 +37,8 @@ def main():
             #print(type(loger.exception()))
             #log = logger.exception("FACK FACK FACK")
             #send_a_message_to_telegram_bot("деление на ноль 1 " + logging.exception("FACK FACK FACK"))
-            send_a_message_to_telegram_bot("деление на ноль 6 %s ", str(raise))
+            msg = raise
+            send_a_message_to_telegram_bot("деление на ноль 6 %s ", str(msg))
             #send_a_message_to_telegram_bot("деление на ноль 2 " + str(logger.exception()))
             #send_a_message_to_telegram_bot("деление на ноль 3 " + logger.exception("e"))
             #send_a_message_to_telegram_bot("деление на ноль 4 " + str(logger.exception(e)))
