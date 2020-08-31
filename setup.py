@@ -28,6 +28,9 @@ def main():
             #response.raise_for_status()
             #response_from_server = response.json()
         except Exception as e:
+            send_a_message_to_telegram_bot(logger.info("Я новый логер!"))
+            #logger.info("Я новый логер!")
+            logger.exception(send_a_message_to_telegram_bot(e))
             #logging.exception()
             #logger.exception("Жопа жопная!!!")
             #print(type(logging.exception()))
@@ -37,7 +40,7 @@ def main():
             #send_a_message_to_telegram_bot("деление на ноль 6 %s ", logger.exception())
             #send_a_message_to_telegram_bot("деление на ноль 2 " + str(logger.exception()))
             #send_a_message_to_telegram_bot("деление на ноль 3 " + logger.exception("e"))
-            send_a_message_to_telegram_bot("деление на ноль 4 " + str(logger.exception(e)))
+            #send_a_message_to_telegram_bot("деление на ноль 4 " + str(logger.exception(e)))
         except requests.exceptions.HTTPError:
             logger.exception()
             #logging.exception()
@@ -66,6 +69,7 @@ def send_a_message_to_telegram_bot(message):
 
 
 if __name__ == '__main__':
+    load_dotenv()
     telegram_token = os.getenv("TELEGRAM_TOKEN")
     bot = telegram.Bot(token=telegram_token)
     chat_id = os.getenv("CHAT_ID")
@@ -74,5 +78,4 @@ if __name__ == '__main__':
     handler = StreamHandler()
     logger.addHandler(handler)
     logger.info("Я новый логер!")
-    load_dotenv()
     main()
