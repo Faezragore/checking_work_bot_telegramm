@@ -62,13 +62,13 @@ def main():
 
 
 def send_a_message_to_telegram_bot(message):
-    telegram_token = os.getenv("TELEGRAM_TOKEN")
-    bot = telegram.Bot(token=telegram_token)
-    chat_id = os.getenv("CHAT_ID")
     bot.send_message(chat_id=chat_id, text=message)
 
 
 if __name__ == '__main__':
+    telegram_token = os.getenv("TELEGRAM_TOKEN")
+    bot = telegram.Bot(token=telegram_token)
+    chat_id = os.getenv("CHAT_ID")
     logger = logging.getLogger("Большой брат")
     logger.setLevel(logging.INFO)
     handler = StreamHandler()
