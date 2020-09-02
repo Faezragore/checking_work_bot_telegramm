@@ -37,7 +37,7 @@ def main():
             #print(type(loger.exception()))
             #log = logger.exception("FACK FACK FACK")
             #send_a_message_to_telegram_bot("деление на ноль 1 " + logging.exception("FACK FACK FACK"))
-            send_a_message_to_telegram_bot(raise logger.exception("FACK FACK FACK"))
+            send_a_message_to_telegram_bot(logger.exception("FACK FACK FACK"))
             #send_a_message_to_telegram_bot("деление на ноль 2 " + str(logger.exception()))
             #send_a_message_to_telegram_bot("деление на ноль 3 " + logger.exception("e"))
             #send_a_message_to_telegram_bot("деление на ноль 4 " + str(logger.exception(e)))
@@ -70,7 +70,7 @@ def send_a_message_to_telegram_bot(message):
 
 if __name__ == '__main__':
     load_dotenv()
-    logger = logging.getLogger('log')
+    logger = logging.getLogger('TestBotlog')
     logger.setLevel(logging.INFO)
     #fh = logging.FileHandler('someTestBot.log')
     fh = logging.StreamHandler()
