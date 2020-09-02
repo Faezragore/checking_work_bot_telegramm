@@ -74,10 +74,12 @@ if __name__ == '__main__':
     logger.setLevel(logging.INFO)
     #fh = logging.FileHandler('someTestBot.log')
     fh = logging.StreamHandler()
-    fh.setLevel(logging.DEBUG)
+    fh.setLevel(logging.INFO)
     #formatter = logging.Formatter("%(asctime)s | %(levelname)-7s | %(message)s")
-    formatter = logging.Formatter('%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s')
-    fh.setFormatter(formatter)
+    _log_format = f"%(asctime)s - [%(levelname)s] - %(name)s - (%(filename)s).%(funcName)s(%(lineno)d) - %(message)s"
+    #formatter = logging.Formatter('%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s')
+    #fh.setFormatter(formatter)
+    fh.setFormatter(logging.Formatter(_log_format))
     logger.addHandler(fh)
   
     telegram_token = os.getenv("TELEGRAM_TOKEN")
