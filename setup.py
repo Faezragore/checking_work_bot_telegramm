@@ -28,9 +28,9 @@ def main():
             #response.raise_for_status()
             #response_from_server = response.json()
         except Exception as e:
-            message[log_exception] = "%s" % e
+            message["log_exception"] = "%s" % e
             send_a_message_to_telegram_bot("Бот упал с ошибкой:")
-            #send_a_message_to_telegram_bot(str(logger.info("Я новый логер!")))
+            send_a_message_to_telegram_bot("собака сутулая" + message["log_exception"])
             #logger.info("Я новый логер!")
             #logger.exception(send_a_message_to_telegram_bot(e))
             #logging.exception()
