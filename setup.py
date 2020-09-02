@@ -27,7 +27,7 @@ def main():
             #response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
             #response.raise_for_status()
             #response_from_server = response.json()
-        except Exception:
+        except Exception as e:
             #send_a_message_to_telegram_bot(str(logger.info("Я новый логер!")))
             #logger.info("Я новый логер!")
             #logger.exception(send_a_message_to_telegram_bot(e))
@@ -37,7 +37,8 @@ def main():
             #print(type(loger.exception()))
             #log = logger.exception("FACK FACK FACK")
             #send_a_message_to_telegram_bot("деление на ноль 1 " + logging.exception("FACK FACK FACK"))
-            send_a_message_to_telegram_bot(logger.exception("FACK FACK FACK"))
+            #send_a_message_to_telegram_bot(logger.exception("FACK FACK FACK"))
+            send_a_message_to_telegram_bot("FACK FACK FACK" + e)
             #send_a_message_to_telegram_bot("деление на ноль 2 " + str(logger.exception()))
             #send_a_message_to_telegram_bot("деление на ноль 3 " + logger.exception("e"))
             #send_a_message_to_telegram_bot("деление на ноль 4 " + str(logger.exception(e)))
