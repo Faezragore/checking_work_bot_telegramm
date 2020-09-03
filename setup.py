@@ -30,8 +30,8 @@ def main():
         except Exception as e:
             message = {}
             message["log_exception"] = "%s" % e
-            send_a_message_to_telegram_bot("Бот упал с ошибкой:")
-            send_a_message_to_telegram_bot("собака сутулая"  +  message["log_exception"])
+            send_a_message_to_telegram_bot("Бот упал с ошибкой: " + logger.info("подробности"))
+            send_a_message_to_telegram_bot("собака сутулая " + message["log_exception"])
             #logger.info("Я новый логер!")
             #logger.exception(send_a_message_to_telegram_bot(e))
             #logging.exception()
