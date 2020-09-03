@@ -31,7 +31,7 @@ def main():
             message = {}
             message["log_exception"] = "%s" % e
             send_a_message_to_telegram_bot("Бот упал с ошибкой:")
-            send_a_message_to_telegram_bot("собака сутулая" + message["log_exception"])
+            send_a_message_to_telegram_bot("собака сутулая"  +  message["log_exception"])
             #logger.info("Я новый логер!")
             #logger.exception(send_a_message_to_telegram_bot(e))
             #logging.exception()
@@ -41,7 +41,7 @@ def main():
             #log = logger.exception("FACK FACK FACK")
             #send_a_message_to_telegram_bot("деление на ноль 1 " + logging.exception("FACK FACK FACK"))
             #send_a_message_to_telegram_bot(logger.exception("FACK FACK FACK"))
-            send_a_message_to_telegram_bot("FACK FACK FACK" + e)
+            #send_a_message_to_telegram_bot("FACK FACK FACK" + e)
             #send_a_message_to_telegram_bot("деление на ноль 2 " + str(logger.exception()))
             #send_a_message_to_telegram_bot("деление на ноль 3 " + logger.exception("e"))
             #send_a_message_to_telegram_bot("деление на ноль 4 " + str(logger.exception(e)))
