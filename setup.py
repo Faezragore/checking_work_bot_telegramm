@@ -27,11 +27,12 @@ def main():
             #response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
             #response.raise_for_status()
             #response_from_server = response.json()
-        except Exception as e:
-            message = {}
-            message["log_exception"] = "%s" % e
-            send_a_message_to_telegram_bot("Бот упал с ошибкой: " + logger.info("подробности"))
-            send_a_message_to_telegram_bot("собака сутулая " + message["log_exception"])
+        except Exception:
+            logger.exception("собака сутулая ")
+            #message = {}
+            #message["log_exception"] = "%s" % e
+            #send_a_message_to_telegram_bot("Бот упал с ошибкой: " + logger.info("подробности"))
+            #send_a_message_to_telegram_bot("собака сутулая " + message["log_exception"])
             #logger.info("Я новый логер!")
             #logger.exception(send_a_message_to_telegram_bot(e))
             #logging.exception()
@@ -46,17 +47,17 @@ def main():
             #send_a_message_to_telegram_bot("деление на ноль 3 " + logger.exception("e"))
             #send_a_message_to_telegram_bot("деление на ноль 4 " + str(logger.exception(e)))
         except requests.exceptions.HTTPError:
-            logger.exception()
+            logger.exception("ошибка exceptions.HTTPError")
             #logging.exception()
-            send_a_message_to_telegram_bot("ошибка exceptions.HTTPError " + str(logger.exception()))
+            #send_a_message_to_telegram_bot("ошибка exceptions.HTTPError " + str(logger.exception()))
             #continue
         except requests.ReadTimeout:
-            logger.exception()
-            send_a_message_to_telegram_bot("ошибка ReadTimeout " + str(logger.exception()))
+            logger.exception("ошибка ReadTimeout ")
+            #send_a_message_to_telegram_bot("ошибка ReadTimeout " + str(logger.exception()))
             #continue
         except requests.ConnectionError:
-            logger.exception()
-            send_a_message_to_telegram_bot("ошибка ConnectionError " + str(logger.exception()))
+            logger.exception("ошибка ConnectionError ")
+            #send_a_message_to_telegram_bot("ошибка ConnectionError " + str(logger.exception()))
             #continue
         
         #if "timeout" in response_from_server["status"]:
@@ -74,17 +75,33 @@ def send_a_message_to_telegram_bot(message):
 
 if __name__ == '__main__':
     load_dotenv()
-    logger = logging.getLogger('TestBotlog')
+    
+    class MyLogsHandler(logging.Handler):
+
+        def emit(self, record):
+            log_entry = self.format(record)
+            bot.send_message(chat_id=chat_id, text=log_entry)
+
+    
+    formatter = logging.Formatter("%(asctime)s — %(name)s — %(levelname)s — %(message)s")
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(formatter)
+    logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
+    logger.addHandler(MyLogsHandler())
+
+    logger.info("Я новый логер!")
+    #logger = logging.getLogger('TestBotlog')
+    #logger.setLevel(logging.INFO)
     #fh = logging.FileHandler('someTestBot.log')
-    fh = logging.StreamHandler()
-    fh.setLevel(logging.INFO)
+    #fh = logging.StreamHandler()
+    #fh.setLevel(logging.INFO)
     #formatter = logging.Formatter("%(asctime)s | %(levelname)-7s | %(message)s")
-    _log_format = f"%(asctime)s - [%(levelname)s] - %(name)s - (%(filename)s).%(funcName)s(%(lineno)d) - %(message)s"
+    #_log_format = f"%(asctime)s - [%(levelname)s] - %(name)s - (%(filename)s).%(funcName)s(%(lineno)d) - %(message)s"
     #formatter = logging.Formatter('%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s')
     #fh.setFormatter(formatter)
-    fh.setFormatter(logging.Formatter(_log_format))
-    logger.addHandler(fh)
+    #fh.setFormatter(logging.Formatter(_log_format))
+    #logger.addHandler(fh)
   
     telegram_token = os.getenv("TELEGRAM_TOKEN")
     bot = telegram.Bot(token=telegram_token)
