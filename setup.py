@@ -21,14 +21,16 @@ def main():
     url = 'https://dvmn.org/api/long_polling/'
     while True:
         try:
-            #send_a_message_to_telegram_bot("Бот запущен")
-            0/0
+            logger.info("Бот запущен")
+            response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
+            response.raise_for_status()
+            response_from_server = response.json()
             #logging.info("Бот запущен")
             #response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
             #response.raise_for_status()
             #response_from_server = response.json()
-        except Exception as e:
-            logger.exception(e)
+        #except Exception as e:
+            #logger.exception("Бот упал с ошибкой: " + e)
             #message = {}
             #message["log_exception"] = "%s" % e
             #send_a_message_to_telegram_bot("Бот упал с ошибкой: " + logger.info("подробности"))
@@ -46,27 +48,27 @@ def main():
             #send_a_message_to_telegram_bot("деление на ноль 2 " + str(logger.exception()))
             #send_a_message_to_telegram_bot("деление на ноль 3 " + logger.exception("e"))
             #send_a_message_to_telegram_bot("деление на ноль 4 " + str(logger.exception(e)))
-        except requests.exceptions.HTTPError:
+        except requests.exceptions.HTTPError as e:
             logger.exception("ошибка exceptions.HTTPError")
             #logging.exception()
             #send_a_message_to_telegram_bot("ошибка exceptions.HTTPError " + str(logger.exception()))
             #continue
-        except requests.ReadTimeout:
+        except requests.ReadTimeout as e:
             logger.exception("ошибка ReadTimeout ")
             #send_a_message_to_telegram_bot("ошибка ReadTimeout " + str(logger.exception()))
             #continue
-        except requests.ConnectionError:
+        except requests.ConnectionError as e:
             logger.exception("ошибка ConnectionError ")
             #send_a_message_to_telegram_bot("ошибка ConnectionError " + str(logger.exception()))
             #continue
         
-        #if "timeout" in response_from_server["status"]:
-            #payload["timestamp"] = response_from_server["timestamp_to_request"]
-        #else:
-            #new_response_from_server = response_from_server["new_attempts"][0]
-            #send_a_message_to_telegram_bot("У вас проверили работу:урок %s. Отправляем уведомления о проверке работ" % (new_response_from_server["lesson_title"]))
-            #payload["timestamp"] = new_response_from_server["timestamp"]
-            #continue
+        if "timeout" in response_from_server["status"]:
+            payload["timestamp"] = response_from_server["timestamp_to_request"]
+        else:
+            new_response_from_server = response_from_server["new_attempts"][0]
+            logger.info("У вас проверили работу:урок %s. Отправляем уведомления о проверке работ" % (new_response_from_server["lesson_title"]))
+            payload["timestamp"] = new_response_from_server["timestamp"]
+            continue
 
 
 #def send_a_message_to_telegram_bot(message):
