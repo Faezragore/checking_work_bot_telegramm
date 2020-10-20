@@ -27,8 +27,8 @@ def main():
             #response = requests.get(url, headers=headers, verify=True, params=payload, timeout=100)
             #response.raise_for_status()
             #response_from_server = response.json()
-        except Exception:
-            logger.exception("собака сутулая ")
+        except Exception as e:
+            logger.exception(e)
             #message = {}
             #message["log_exception"] = "%s" % e
             #send_a_message_to_telegram_bot("Бот упал с ошибкой: " + logger.info("подробности"))
@@ -75,6 +75,9 @@ def main():
 
 if __name__ == '__main__':
     load_dotenv()
+    telegram_token = os.getenv("TELEGRAM_TOKEN")
+    bot = telegram.Bot(token=telegram_token)
+    chat_id = os.getenv("CHAT_ID")
     
     class MyLogsHandler(logging.Handler):
 
@@ -103,9 +106,6 @@ if __name__ == '__main__':
     #fh.setFormatter(logging.Formatter(_log_format))
     #logger.addHandler(fh)
   
-    telegram_token = os.getenv("TELEGRAM_TOKEN")
-    bot = telegram.Bot(token=telegram_token)
-    chat_id = os.getenv("CHAT_ID")
     #logger = logging.getLogger("Большой брат")
     #logger.setLevel(logging.INFO)
     #handler = StreamHandler()
