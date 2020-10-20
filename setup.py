@@ -69,8 +69,8 @@ def main():
             #continue
 
 
-def send_a_message_to_telegram_bot(message):
-    bot.send_message(chat_id=chat_id, text=message)
+#def send_a_message_to_telegram_bot(message):
+    #bot.send_message(chat_id=chat_id, text=message)
 
 
 if __name__ == '__main__':
