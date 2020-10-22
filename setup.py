@@ -37,22 +37,27 @@ def main():
             payload["timestamp"] = response_from_server["timestamp_to_request"]
         else:
             new_response_from_server = response_from_server["new_attempts"][0]
-            logger.info("У вас проверили работу:урок %s. Отправляем уведомления о проверке работ" % (new_response_from_server["lesson_title"]))
+            send_a_message_to_telegram_bot("У вас проверили работу:урок %s. Отправляем уведомления о проверке работ" % (new_response_from_server["lesson_title"]))
             payload["timestamp"] = new_response_from_server["timestamp"]
             continue
 
-
+def send_a_message_to_telegram_bot(message):
+    bot.send_message(chat_id=chat_id, text=message)
+            
+            
 if __name__ == '__main__':
     load_dotenv()
-    telegram_token = os.getenv("TELEGRAM_TOKEN")
-    bot = telegram.Bot(token=telegram_token)
+    telegram_token_bot = os.getenv("TELEGRAM_TOKEN_BOT")
+    telegram_token_bot_logger = os.getenv("TELEGRAM_TOKEN_BOT_LOGGER")
+    bot = telegram.Bot(token=telegram_token_bot)
+    bot_logger = telegram.Bot(token=telegram_bot_token_logger)
     chat_id = os.getenv("CHAT_ID")
     
     class MyLogsHandler(logging.Handler):
 
         def emit(self, record):
             log_entry = self.format(record)
-            bot.send_message(chat_id=chat_id, text=log_entry)
+            bot_logger.send_message(chat_id=chat_id, text=log_entry)
 
     
     formatter = logging.Formatter("%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s")
