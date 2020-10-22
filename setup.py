@@ -9,9 +9,6 @@ from logging.handlers import RotatingFileHandler
 from logging import StreamHandler
 
 
-#logging.basicConfig(format = '%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level = logging.INFO)
-
-
 def main():
     devman_token = os.getenv("DEVMAN_TOKEN")
     headers = {
