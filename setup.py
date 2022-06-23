@@ -50,7 +50,7 @@ if __name__ == '__main__':
     telegram_token_bot = os.getenv("TELEGRAM_TOKEN_BOT")
     telegram_token_bot_logger = os.getenv("TELEGRAM_TOKEN_BOT_LOGGER")
     bot = telegram.Bot(token=telegram_token_bot)
-    bot_logger = telegram.Bot(token=telegram_bot_token_logger)
+    bot_logger = telegram.Bot(token=telegram_token_bot_logger)
     chat_id = os.getenv("CHAT_ID")
     
     class MyLogsHandler(logging.Handler):
