@@ -10,7 +10,7 @@ from logging import StreamHandler
 
 
 def main():
-    devman_token = os.environ("DEVMAN_TOKEN")
+    devman_token = os.environ["DEVMAN_TOKEN"]
     headers = {
         'Authorization': 'Token %s' % (devman_token)
     }
@@ -47,11 +47,11 @@ def send_a_message_to_telegram_bot(message):
             
 if __name__ == '__main__':
     load_dotenv()
-    telegram_token_bot = os.environ("TELEGRAM_TOKEN_BOT")
-    telegram_token_bot_logger = os.environ("TELEGRAM_TOKEN_BOT_LOGGER")
+    telegram_token_bot = os.environ["TELEGRAM_TOKEN_BOT"]
+    telegram_token_bot_logger = os.environ["TELEGRAM_TOKEN_BOT_LOGGER"]
     bot = telegram.Bot(token=telegram_token_bot)
     bot_logger = telegram.Bot(token=telegram_token_bot_logger)
-    chat_id = os.environ("CHAT_ID")
+    chat_id = os.environ["CHAT_ID"]
     
     class MyLogsHandler(logging.Handler):
 
