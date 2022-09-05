@@ -37,7 +37,6 @@ def main():
                 %(message)s")
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(formatter)
-    logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
     logger.addHandler(LogsHandler(bot, chat_id))
     logger.info("Я новый логер!")
@@ -60,15 +59,15 @@ def main():
 
             if "timeout" in response_api_devman["status"]:
                 payload["timestamp"] = \
-                    response_api_devman["timestamp_to_request"]
+                    verification_response_api_devman["timestamp_to_request"]
             else:
-                new_response_api_devman = \
-                    response_api_devman["new_attempts"][0]
+                new_verification_response_api_devman = \
+                    verification_response_api_devman["new_attempts"][0]
                 message = "У вас проверили работу:урок %s.\
                            Отправляем уведомления о проверке работ" \
-                          % (new_response_api_devman["lesson_title"])
+                          % (new_verification_response_api_devman["lesson_title"])
                 bot.send_message(chat_id=chat_id, text=message)
-                payload["timestamp"] = new_response_api_devman["timestamp"]
+                payload["timestamp"] = new_verification_response_api_devman["timestamp"]
                 continue
 
         except requests.exceptions.HTTPError as error:
