@@ -56,19 +56,19 @@ def main():
                 verify=True, params=payload, timeout=100
             )
             response.raise_for_status()
-            response_api_devman = response.json()
+            status_work_verification = response.json()
 
-            if "timeout" in response_api_devman["status"]:
+            if "timeout" in status_work_verification["status"]:
                 payload["timestamp"] = \
-                    verification_response_api_devman["timestamp_to_request"]
+                    status_work_verification["timestamp_to_request"]
             else:
-                new_verification_response_api_devman = \
-                    verification_response_api_devman["new_attempts"][0]
+                new_status_work_verification = \
+                    status_work_verification["new_attempts"][0]
                 message = "У вас проверили работу:урок %s.\
                            Отправляем уведомления о проверке работ" \
-                          % (new_verification_response_api_devman["lesson_title"])
+                          % (new_status_work_verification["lesson_title"])
                 bot.send_message(chat_id=chat_id, text=message)
-                payload["timestamp"] = new_verification_response_api_devman["timestamp"]
+                payload["timestamp"] = new_status_work_verification["timestamp"]
                 continue
 
         except requests.exceptions.HTTPError as error:
